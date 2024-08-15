@@ -11,8 +11,8 @@ function Player() {
       setSounds(savedSounds);
     } else {
       const initialSounds = [
-        { id: '1', name: 'אמודש', url: '/mysounds/sounds/amodesh.mp3' },
-        { id: '2', name: 'דגל', url: '/mysounds/sounds/flag.mp3' },
+        { id: '1', name: 'עמוד האש', url: `${process.env.PUBLIC_URL}/sounds/amodesh.mp3` },
+        { id: '2', name: 'הורדת הדגל', url: `${process.env.PUBLIC_URL}/sounds/flag.mp3` },
       ];
       setSounds(initialSounds);
       localStorage.setItem('mySounds', JSON.stringify(initialSounds));
