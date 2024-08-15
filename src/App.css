@@ -1,15 +1,14 @@
 :root {
-  --primary-color: #4a90e2;
-  --secondary-color: #f5a623;
-  --background-color: #f0f4f8;
+  --primary-color: #6200ee;
+  --secondary-color: #03dac6;
+  --background-color: #f5f5f5;
   --text-color: #333;
+  --button-hover: #018786;
 }
 
 body {
   margin: 0;
-  font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Rubik', 'Segoe UI', 'Roboto', sans-serif;
   background-color: var(--background-color);
   color: var(--text-color);
 }
@@ -23,19 +22,22 @@ body {
 
 .App-header {
   background-color: var(--primary-color);
-  padding: 20px;
+  padding: 30px 20px;
   color: white;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 h1 {
   margin: 0;
   font-size: 2.5em;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
 
 main {
   flex-grow: 1;
-  padding: 20px;
+  padding: 40px 20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -43,45 +45,54 @@ main {
 
 .Player {
   background-color: white;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  max-width: 600px;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  max-width: 800px;
   width: 100%;
+}
+
+.Player h2 {
+  color: var(--primary-color);
+  font-size: 1.8em;
+  margin-bottom: 25px;
 }
 
 .sound-buttons {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 15px;
-  margin-top: 20px;
+  gap: 20px;
 }
 
 button {
   background-color: var(--secondary-color);
-  color: white;
+  color: var(--text-color);
   border: none;
-  padding: 15px 20px;
-  font-size: 1em;
+  padding: 15px 25px;
+  font-size: 1.1em;
+  font-weight: 500;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 10px;
   transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 button:hover {
-  background-color: #e69100;
-  transform: translateY(-2px);
+  background-color: var(--button-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 8px rgba(0,0,0,0.15);
 }
 
 button.playing {
   background-color: var(--primary-color);
-  box-shadow: 0 0 10px rgba(74, 144, 226, 0.5);
+  color: white;
+  box-shadow: 0 0 15px rgba(98, 0, 238, 0.5);
 }
 
 footer {
   background-color: var(--primary-color);
   color: white;
-  padding: 10px;
+  padding: 15px;
   font-size: 0.9em;
 }
 
@@ -89,4 +100,14 @@ footer {
   .sound-buttons {
     grid-template-columns: 1fr;
   }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.playing {
+  animation: pulse 1.5s infinite;
 }
