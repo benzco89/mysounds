@@ -1,37 +1,42 @@
-// src/components/Player.jsx
 import React, { useState, useEffect, useRef } from 'react';
 
-const Player = () => {
+function Player() {
   const [sounds, setSounds] = useState([]);
   const [currentSound, setCurrentSound] = useState(null);
-  const audioRefs = useRef({});
+  const audioRef = useRef(new Audio());
 
   useEffect(() => {
-    // טעינת הנתונים מקובץ ה-JSON
-    fetch('/sounds.json')
-      .then(response => response.json())
-      .then(data => setSounds(data.sounds))
-      .catch(error => console.error('Error loading sounds:', error));
+    const savedSounds = JSON.parse(localStorage.getItem('mySounds')) || [];
+    if (savedSounds.length > 0) {
+      setSounds(savedSounds);
+    } else {
+      const initialSounds = [
+        { id: '1', name: 'אמודש', url: '/mysounds/sounds/amodesh.mp3' },
+        { id: '2', name: 'דגל', url: '/mysounds/sounds/flag.mp3' },
+      ];
+      setSounds(initialSounds);
+      localStorage.setItem('mySounds', JSON.stringify(initialSounds));
+    }
   }, []);
 
   const playSound = (soundId) => {
-    if (currentSound === soundId) {
-      audioRefs.current[soundId].pause();
-      audioRefs.current[soundId].currentTime = 0;
-      setCurrentSound(null);
-    } else {
-      if (currentSound) {
-        audioRefs.current[currentSound].pause();
-        audioRefs.current[currentSound].currentTime = 0;
+    const sound = sounds.find(s => s.id === soundId);
+    if (sound) {
+      if (currentSound === soundId) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+        setCurrentSound(null);
+      } else {
+        audioRef.current.src = sound.url;
+        audioRef.current.play();
+        setCurrentSound(soundId);
       }
-      audioRefs.current[soundId].play();
-      setCurrentSound(soundId);
     }
   };
 
   return (
     <div className="Player">
-    
+      <h2>נגן הצלילים</h2>
       <div className="sound-buttons">
         {sounds.map((sound) => (
           <button 
@@ -40,19 +45,11 @@ const Player = () => {
             className={currentSound === sound.id ? 'playing' : ''}
           >
             {sound.name}
-            {currentSound === sound.id && <span className="playing-indicator"> ▶ </span>}
           </button>
         ))}
       </div>
-      {sounds.map((sound) => (
-        <audio 
-          key={sound.id}
-          ref={el => audioRefs.current[sound.id] = el}
-          src={sound.url}
-        />
-      ))}
     </div>
   );
-};
+}
 
 export default Player;
