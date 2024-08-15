@@ -1,0 +1,6 @@
+{
+    "sounds": [
+      { "id": "1", "name": "עמוד האש", "url": "/sounds/amodesh.mp3" },
+      { "id": "2", "name": "הורדת הדגל", "url": "/sounds/flag.mp3" }
+    ]
+  }
