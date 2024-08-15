@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/mysounds/static/css/main.b436ef75.css",
-    "main.js": "/mysounds/static/js/main.0c39c232.js",
+    "main.css": "/mysounds/static/css/main.82786eed.css",
+    "main.js": "/mysounds/static/js/main.0e72e701.js",
     "index.html": "/mysounds/index.html",
-    "main.b436ef75.css.map": "/mysounds/static/css/main.b436ef75.css.map",
-    "main.0c39c232.js.map": "/mysounds/static/js/main.0c39c232.js.map"
+    "main.82786eed.css.map": "/mysounds/static/css/main.82786eed.css.map",
+    "main.0e72e701.js.map": "/mysounds/static/js/main.0e72e701.js.map"
   },
   "entrypoints": [
-    "static/css/main.b436ef75.css",
-    "static/js/main.0c39c232.js"
+    "static/css/main.82786eed.css",
+    "static/js/main.0e72e701.js"
   ]
 }
