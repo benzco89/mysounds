@@ -3,14 +3,22 @@ import React, { useState, useEffect, useRef } from 'react';
 function Player() {
   const [sounds, setSounds] = useState([]);
   const [currentSound, setCurrentSound] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
   const audioRef = useRef(new Audio());
 
   useEffect(() => {
-    const initialSounds = [
-      { id: '1', name: '🔥 עמוד האש', url: `${process.env.PUBLIC_URL}/sounds/amodesh.mp3` },
-      { id: '2', name: '🚩 הורדת הדגל', url: `${process.env.PUBLIC_URL}/sounds/flag.mp3` },
-    ];
-    setSounds(initialSounds);
+    fetch(`${process.env.PUBLIC_URL}/sounds.json`)
+      .then(response => response.json())
+      .then(data => {
+        setSounds(data.sounds);
+        setIsLoading(false);
+      })
+      .catch(err => {
+        console.error("Error loading sounds:", err);
+        setError("Failed to load sounds. Please try again later.");
+        setIsLoading(false);
+      });
   }, []);
 
   const playSound = (soundId) => {
@@ -21,12 +29,15 @@ function Player() {
         audioRef.current.currentTime = 0;
         setCurrentSound(null);
       } else {
-        audioRef.current.src = sound.url;
+        audioRef.current.src = `${process.env.PUBLIC_URL}${sound.url}`;
         audioRef.current.play();
         setCurrentSound(soundId);
       }
     }
   };
+
+  if (isLoading) return <div>טוען צלילים...</div>;
+  if (error) return <div>{error}</div>;
 
   return (
     <div className="Player">
