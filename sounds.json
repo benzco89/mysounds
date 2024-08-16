@@ -1,14 +1,19 @@
 {
-    "sounds": [
-      {
-        "id": "1",
-        "name": "🔥 עמוד האש",
-        "url": "/sounds/amodesh.mp3"
-      },
-      {
-        "id": "2",
-        "name": "🚩 הורדת הדגל",
-        "url": "/sounds/flag.mp3"
-      }
-    ]
-  }
+  "sounds": [
+    {
+      "id": "1",
+      "name": "🔥 עמוד האש",
+      "url": "/sounds/amodesh.mp3"
+    },
+    {
+      "id": "2",
+      "name": "🚩 הורדת הדגל",
+      "url": "/sounds/flag.mp3"
+    },
+    {
+      "id": "3",
+      "name": "🎻 smallest violin",
+      "url": "/sounds/smallest_violin.mp3"
+    }
+  ]
+}
