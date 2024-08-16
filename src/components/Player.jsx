@@ -3,22 +3,13 @@ import React, { useState, useEffect, useRef } from 'react';
 function Player() {
   const [sounds, setSounds] = useState([]);
   const [currentSound, setCurrentSound] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
   const audioRef = useRef(new Audio());
 
   useEffect(() => {
     fetch(`${process.env.PUBLIC_URL}/sounds.json`)
       .then(response => response.json())
-      .then(data => {
-        setSounds(data.sounds);
-        setIsLoading(false);
-      })
-      .catch(err => {
-        console.error("Error loading sounds:", err);
-        setError("Failed to load sounds. Please try again later.");
-        setIsLoading(false);
-      });
+      .then(data => setSounds(data.sounds))
+      .catch(error => console.error('Error loading sounds:', error));
   }, []);
 
   const playSound = (soundId) => {
@@ -35,9 +26,6 @@ function Player() {
       }
     }
   };
-
-  if (isLoading) return <div>טוען צלילים...</div>;
-  if (error) return <div>{error}</div>;
 
   return (
     <div className="Player">
